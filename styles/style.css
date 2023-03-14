@@ -1,19 +1,32 @@
+
 body {
-    padding-top: 20px;
-    width: 80%;
-    margin: 0 auto;
-    background-color: black;
+  padding-top: 20px;
+  width: 80%;
+  margin: 0 auto;
+  background-color: black;
 }
 h1 {
-  display: flex;
-  color: #0d7979;
+display: flex;
+color: #0d7979;
 }
 
 h2 {
-  display: flex;
-  color: #0a5a5a;
+display: flex;
+color: #0a5a5a;
 }
 
 p {
-    color: rgb(187, 183, 183);
+  color: rgb(187, 183, 183);
+}
+
+footer {
+background-color: rgb(19, 10, 20);
+font-weight: 700;
+padding: 10px;
+}
+
+.div-cotizar {
+margin: 20px;
+padding: 20px;
+text-align: center;
 }
