@@ -52,8 +52,6 @@ function iniciarConsulta() {
         }
 }
 
-
-
 function verTurnos() {
     if (turnos.length > 0) {
         console.table(turnos)
@@ -76,3 +74,5 @@ function finalizarConsulta() {
             turnos.length = 0
         }
 }
+
+iniciarConsulta
