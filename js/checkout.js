@@ -70,7 +70,7 @@ btnComprar.addEventListener("click", ()=> {
             carrito.length = 0
             Swal.fire("turnos confirmados", "te esperamos!", "success")
                 .then(()=> {
-                    location.href = "http://127.0.0.1:5500/turnos.html"
+                    location.href = "http://127.0.0.1:5500/index.html"
                 })
         }
       })
