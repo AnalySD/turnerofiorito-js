@@ -1,33 +1,4 @@
-class Gestion {
-    constructor (turnos) {
-        this.turnos = turnos
-    }
-
-    obtenerSubtotal () {
-        if (this.turnos.length >0) {
-            return this.turnos.reduce ((acc, especialidad)=> acc + especialidad.cantidad, 0)
-        } else {
-            return 0
-        }
-    }
-    
-    confirmarTurno (){
-        if (this.obtenerSubtotal () !== 0) {
-            return `Confirmamos la cantidad de ${this.obtenerSubtotal ()} turnos \n Muchas gracias! Lo esperamos.` 
-        } else {
-            return "Error en la validacion. Ningun turno fue confirmado"
-        }
-    }
-}
-
 const turnos = []
-
-const especialidades = [{imagen: '🧠', codigo: 1, tipo: "Neurologia", cantidad: 1},
-                        {imagen: '🤍', codigo: 2, tipo: "Cardiologia", cantidad: 1},
-                        {imagen: '🦻🏻', codigo: 3, tipo: "Fonoaudiologia", cantidad: 1},
-                        {imagen: '🦷', codigo: 4, tipo: "Odontologia", cantidad: 1},
-                        {imagen: '👶', codigo: 5, tipo: "Pediatria", cantidad: 1},
-                        {imagen: '🦴', codigo: 6, tipo: "Traumatologia", cantidad: 1}]
 
 const mensajeInicial = "Selecciona el area de especialidad por el codigo numerico:"
 
@@ -39,8 +10,8 @@ function buscarEspecialidad(codigo) {
 function iniciarConsulta() {
     let codigo = prompt(mensajeInicial)
         if (!parseInt(codigo)) {
-            alert("⛔️ Error en el código ingresado.")
-            return 
+            //alert("⛔️ Error en el código ingresado.")
+            alerta(false,0,"error", "", "Error","turno no encontrado")
         }
         let especialidadElegida = buscarEspecialidad(codigo)
             turnos.push(especialidadElegida)
@@ -51,8 +22,6 @@ function iniciarConsulta() {
             finalizarConsulta()
         }
 }
-
-iniciarConsulta ()
 
 function verTurnos() {
     if (turnos.length > 0) {
@@ -68,7 +37,7 @@ function finalizarConsulta() {
         return 
     }
     
-    const shopping = new Gestion (turnos)
+    const shopping = new Compra(turnos)
     alert(`Usted tiene un total de ${shopping.obtenerSubtotal()} turnos gestionados`)
     let respuesta = confirm("¿Deseas confirmar sus turnos?")
         if (respuesta) {
@@ -77,3 +46,15 @@ function finalizarConsulta() {
         }
 }
 
+const alerta = (toast, timer, icon, position, title, text )=> {
+    Swal.fire({
+        toast: toast || false, 
+        position: position || 'center', // top-end, bottom-end, top-start, center
+        icon: icon || 'info',     //success, warning, error, question, info
+        title: title || '',
+        text: text || '',
+        showConfirmButton: true,
+        confirmButtonText: 'Aceptar',
+        timer: timer
+      })
+}
