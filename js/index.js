@@ -4,15 +4,15 @@ class Gestion {
     }
 
     obtenerSubtotal () {
-        if (turnos.length >0) {
+        if (this.turnos.length >0) {
             return this.turnos.reduce ((acc, especialidad)=> acc + especialidad.cantidad, 0)
         } else {
-            return "Error inesperado"
+            return 0
         }
     }
     
     confirmarTurno (){
-        if (this.obtenerSubtotal () !== "Error Inesperado") {
+        if (this.obtenerSubtotal () !== 0) {
             return `Confirmamos la cantidad de ${this.obtenerSubtotal ()} turnos \n Muchas gracias! Lo esperamos.` 
         } else {
             return "Error en la validacion. Ningun turno fue confirmado"
@@ -52,6 +52,8 @@ function iniciarConsulta() {
         }
 }
 
+iniciarConsulta ()
+
 function verTurnos() {
     if (turnos.length > 0) {
         console.table(turnos)
@@ -75,4 +77,3 @@ function finalizarConsulta() {
         }
 }
 
-iniciarConsulta
