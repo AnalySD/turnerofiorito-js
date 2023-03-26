@@ -1,0 +1,38 @@
+[
+    {
+        "codigo": 1,
+        "imagen": "🧠",
+        "nombre": "Neurologia",
+        "cantidad": 1
+    },
+    {
+        "codigo": 2,
+        "imagen": "🤍",
+        "nombre": "Cardiologia",
+        "cantidad": 1
+    },
+    {
+        "codigo": 3,
+        "imagen": "🦻🏻",
+        "nombre": "Fonoaudiologia",
+        "cantidad": 1
+    },
+    {
+        "codigo": 4,
+        "imagen": "🦷",
+        "nombre": "Odontologia",
+        "cantidad": 1
+    },
+    {
+        "codigo": 5,
+        "imagen": "👶",
+        "nombre": "Pediatria",
+        "cantidad": 1
+    },
+    {
+        "codigo": 6,
+        "imagen": "🦴",
+        "nombre": "Traumatologia",
+        "cantidad": 1
+    }
+]
