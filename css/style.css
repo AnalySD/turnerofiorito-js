@@ -231,9 +231,6 @@ tbody tr:nth-child(even) {
 
 
 
-
-
-
 footer {
   background: linear-gradient(#46454e, #080808);
   color: rgba(75, 216, 209, 0.9098039216);
@@ -241,8 +238,6 @@ footer {
   flex-direction: row;
   justify-content: space-evenly;
 }
-
-
 
 
 @media (max-width: 480px) {
