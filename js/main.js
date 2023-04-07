@@ -10,7 +10,6 @@ function buscarEspecialidad(codigo) {
 function iniciarConsulta() {
     let codigo = prompt(mensajeInicial)
         if (!parseInt(codigo)) {
-            //alert("⛔️ Error en el código ingresado.")
             alerta(false,0,"error", "", "Error","turno no encontrado")
         }
         let especialidadElegida = buscarEspecialidad(codigo)
