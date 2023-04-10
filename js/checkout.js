@@ -1,77 +1,64 @@
-const container = document.getElementById("container")
-const inputSearch = document.querySelector("input#inputSearch")
-const URL = "json/turnos.json"
-const especialidades = []
+const URL = "https://63b04d8cf9a53fa20265e446.mockapi.io/api/especialidades" || "json/turnos.json"
 
-function cargarEspecialidades(array) {
-    let contenido = ""
-    if (array.length > 0) {
-        array.forEach(especialidad => {
-            contenido += retornoCard(especialidad)
-        })
-        container.innerHTML = contenido
-    }
+
+
+
+function armarTablaTurnos(especialidad) {
+    return `<tr>
+                <td>${especialidad.imagen}</td>
+                <td>${especialidad.nombre}</td>
+                <td>${especialidad.cantidad}</td>
+                <td> <button class= "button-delete" id="${especialidad.nombre}"> <img src="../images/pngegg.png" width="30px"> </button></td>
+            </tr>`
 }
 
-function activarClickBotones() {
-    const botonesAdd= document.querySelectorAll("button.button-add")
-    botonesAdd.forEach(btn => {
-        btn.addEventListener("click", ()=> {
-            let resultado = especialidades.find(esp => esp.codigo === parseInt(btn.id))
-                carrito.push(resultado)
-                localStorage.setItem("carrito", JSON.stringify(carrito))
-        })
-    })
-}
-
-
-function recuperarCarrito (){
+function recuperarCarrito() {
+    const tbody = document.querySelector("tbody")
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || []
     let tablaHTML = ""
-    const tbody = document.querySelector ("tbody")
-    const carrito = JSON.parse(localStorage.getItem ("carrito"))
-    if (carrito.length >= 0) {
-        carrito.forEach (especialidad => {
+    if (carrito && carrito.length >= 0) {
+        carrito.forEach(especialidad => {
             tablaHTML += armarTablaTurnos(especialidad)
         })
         tbody.innerHTML = tablaHTML
     }
 }
-recuperarCarrito ()
+recuperarCarrito()
 
 function activarBotonesDelete() {
     const buttonsDelete = document.querySelectorAll("button.button-delete")
     buttonsDelete.forEach(btn => {
-        btn.addEventListener("click", ()=> {
+        btn.addEventListener("click", () => {
             let pos = carrito.findIndex(especialidad => especialidad.nombre === btn.id)
-                if (pos > -1) {
-                    carrito.splice(pos, 1)
-                    localStorage.setItem("carrito", JSON.stringify(carrito))
-                    recuperarCarrito()
-                    activarBotonesDelete()
-                }
+            if (pos > -1) {
+                carrito.splice(pos, 1)
+                localStorage.setItem("carrito", JSON.stringify(carrito))
+                recuperarCarrito()
+                activarBotonesDelete()
+            }
         })
     })
 }
 activarBotonesDelete()
 
-const btnComprar = document.querySelector ("#btnComprar")
+const btnConfirm = document.querySelector("#btnConfirm")
 
-btnComprar.addEventListener("click", ()=> {
+btnConfirm.addEventListener("click", () => {
     Swal.fire({
         icon: "question",
         title: "¿Confirmas los turnos?",
         showCancelButton: true,
         confirmButtonText: "Confirmo!",
         cancelButtonText: "Cancelar",
-      }) 
-      .then(result => {
-        if (result.isConfirmed) {
-            localStorage.removeItem("carrito")
-            carrito.length = 0
-            Swal.fire("turnos confirmados", "te esperamos!", "success")
-                .then(()=> {
-                    location.href = "http://127.0.0.1:5500/index.html"
-                })
-        }
-      })
+    })
+        .then(result => {
+            if (result.isConfirmed) {
+                localStorage.removeItem("carrito")
+                carrito.length = 0
+                Swal.fire("turnos confirmados", "te esperamos!", "success")
+                    .then(() => {
+                        location.href = "http://127.0.0.1:5500/index.html"
+                    })
+            }
+        })
 })
