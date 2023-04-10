@@ -1,8 +1,5 @@
 const URL = "https://63b04d8cf9a53fa20265e446.mockapi.io/api/especialidades" || "json/turnos.json"
 
-
-
-
 function armarTablaTurnos(especialidad) {
     return `<tr>
                 <td>${especialidad.imagen}</td>
