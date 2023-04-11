@@ -1,6 +1,6 @@
 const container = document.getElementById("container")
 const inputSearch = document.querySelector("input#inputSearch")
-const URL = "https://63b04d8cf9a53fa20265e446.mockapi.io/api/especialidades" || "json/turnos.json"
+const URL = "json/turnos.json"
 const especialidades = []
 const carrito = JSON.parse(localStorage.getItem("carrito")) || []
 
@@ -34,12 +34,15 @@ function activarClickBotones() {
                 showConfirmButton: false,
                 timer: 1500
               })
+              
             let resultado = especialidades.find(esp => esp.codigo === parseInt(btn.id))
             carrito.push(resultado)
+           
             localStorage.setItem("carrito", JSON.stringify(carrito))
         })
     })
 }
+
 
 function filtrarEspecialidades() {
     let resultado = especialidades.filter(especialidad => especialidad.nombre.toUpperCase().includes(inputSearch.value.toUpperCase().trim()))

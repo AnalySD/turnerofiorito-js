@@ -229,6 +229,9 @@ tbody tr:nth-child(even) {
   background-color: rgb(233, 13, 13);
 }
 
+.tabla {
+  display: flex;
+}
 
 
 footer {

@@ -1,4 +1,5 @@
-const URL = "https://63b04d8cf9a53fa20265e446.mockapi.io/api/especialidades" || "json/turnos.json"
+const URL = "json/turnos.json"
+const carrito = JSON.parse(localStorage.getItem("carrito")) || []
 
 function armarTablaTurnos(especialidad) {
     return `<tr>
@@ -12,8 +13,9 @@ function armarTablaTurnos(especialidad) {
 function recuperarCarrito() {
     const tbody = document.querySelector("tbody")
     const carrito = JSON.parse(localStorage.getItem("carrito")) || []
+   
     let tablaHTML = ""
-    if (carrito && carrito.length >= 0) {
+    if (carrito.length >= 0) {
         carrito.forEach(especialidad => {
             tablaHTML += armarTablaTurnos(especialidad)
         })
@@ -27,6 +29,7 @@ function activarBotonesDelete() {
     buttonsDelete.forEach(btn => {
         btn.addEventListener("click", () => {
             let pos = carrito.findIndex(especialidad => especialidad.nombre === btn.id)
+            
             if (pos > -1) {
                 carrito.splice(pos, 1)
                 localStorage.setItem("carrito", JSON.stringify(carrito))
@@ -54,7 +57,7 @@ btnConfirm.addEventListener("click", () => {
                 carrito.length = 0
                 Swal.fire("turnos confirmados", "te esperamos!", "success")
                     .then(() => {
-                        location.href = "http://127.0.0.1:5500/index.html"
+                        location.href = "../index.html"
                     })
             }
         })
